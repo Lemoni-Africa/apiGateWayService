@@ -1,0 +1,179 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v1/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identitymanager.myapiservices.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/identity-manager/{url}",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 5
+      },
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      //"UpstreamHost": "localhost",
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "identity"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Invoices/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "invoice-sandbox.myapiservices.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/Invoices/{url}",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 5
+      },
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      //"UpstreamHost": "localhost",
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "CBSAPI" ]
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "identity"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/vehicle/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "invoice-sandbox.myapiservices.net/",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/vehicle/{url}",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 5
+      },
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      //"UpstreamHost": "localhost",
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "VEHICLESAPI" ]
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "identity"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "verifier-api-lemoni.herokuapp.com",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/lemoni/{url}",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 5
+      },
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      //"UpstreamHost": "localhost",
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "LEMONIAPI" ]
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "identity"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "bankingapi.paymentgatewayapi.com",
+          "Port": 43006
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/paymentGateway/{url}",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 5
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "PaymentGatewayAPI" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/DefaultC24Service/api/v2/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ISOBridge/{url}",
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 5
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "userType": "SALESMAN"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:44336/"
+  }
+  //"ReRouteIsCaseSensitive" : false 
+
+}

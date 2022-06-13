@@ -1,0 +1,100 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v1/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identitymanager.myapiservices.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/identity-manager/{url}",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 5
+      },
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      //"UpstreamHost": "localhost",
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "identity"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-apis.lemoniafrica.com",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/lemoni/api/{url}",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 5
+      },
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      //"UpstreamHost": "localhost",
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "LEMONIAPI" ]
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "identity"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "payout-api.lemoniafrica.com",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/lemoni-txn/api/{url}",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 5
+      },
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      //"UpstreamHost": "localhost",
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "LEMONIAPI" ]
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "identity"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:44336/"
+  }
+  //"ReRouteIsCaseSensitive" : false 
+
+}
